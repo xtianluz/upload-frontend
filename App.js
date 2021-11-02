@@ -12,12 +12,25 @@ import {
   View,
   Text,
   Button,
+  Alert,
 } from 'react-native';
+
+import ImagePicker from 'react-native-image-crop-picker';
+
 
 
 const clickHandler = () => {
-  console.warn('clicked')
-   
+  ImagePicker.openPicker({
+    width: 500,
+    height: 500,
+    cropping: true,
+    mediaType: 'photo'
+  }).then(image => {
+    console.warn(image.path)
+    alert('Successful')
+  }).catch(err => {
+    console.warn(err)
+  })
 }
 
 const App = () => {
@@ -26,7 +39,6 @@ const App = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello World</Text>
         <Button title='click me' onPress={clickHandler}>Click</Button>
       </View>
     </SafeAreaView>
