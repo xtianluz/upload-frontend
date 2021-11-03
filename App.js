@@ -26,42 +26,26 @@ const clickHandler = () => {
   ImagePicker.openPicker({
     width: 500,
     height: 500,
-    cropping: false,
+    cropping: true,
     mediaType: 'photo'
   }).then(image => {
     console.log('from image',JSON.stringify(image))
-    const jsonPath = JSON.stringify(image.path)
-    const jsonName = JSON.stringify(image.modificationDate)
-    const jsonImage = JSON.stringify(image)
-
+    
     var FormData = require('form-data')
     var formData = new FormData()
-    // formData.append('fieldname', 'img')
-    // formData.append('path', image.path)
-    // formData.append('originalname', 'testingImage')
-    // formData.append('image', {
-    //   uri: jsonImage,
-    //   name: jsonName,
-    //   type: 'image/jpeg'
-    // })
-    // formData.append('image', {uri: image.path, name: 'testing123', type: 'image/jpeg'})
-    formData.append('image', jsonPath)
-
-    // var config = {
-    //   headers: {"Content-Type": "multipart/form-data"}
-    // }
-
-    // axios
-    //   .post('http://10.0.2.2:5000/uploads',formData, config)
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
+    formData.append('image', {
+      uri: image.path, 
+      name: JSON.stringify(image.modificationDate) + '.jpg', 
+      type: 'image/jpeg'})
       
     axios({
       method: 'post',
       url: 'http://10.0.2.2:5000/uploads',
       data: formData,
-      headers: {"Content-Type": "multipart/form-data"}
+      headers: {
+        Accept: 'application/json',
+        "Content-Type": "multipart/form-data"
+      }
     }).then(response => {
       console.log('from response', response)
     }).catch(err => {
