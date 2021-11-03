@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import axios from 'axios';
 import React from 'react';
 import {
@@ -21,7 +13,6 @@ import ImagePicker from 'react-native-image-crop-picker';
 
 
 const clickHandler = () => {
-  
 
   ImagePicker.openPicker({
     width: 500,
@@ -48,13 +39,16 @@ const clickHandler = () => {
       }
     }).then(response => {
       console.log('from response', response)
+      Alert.alert('Ayos!','Success!')
     }).catch(err => {
       console.log('from axios',err)
-    })  
+      Alert.alert('Error', 'Unxpected error!')
+    })
 
-    // Alert.alert('Ayos!','')
+    
   }).catch(err => {
     console.log('from picker', err)
+
   })
 };
 
