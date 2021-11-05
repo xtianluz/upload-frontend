@@ -30,7 +30,7 @@ const clickHandler = () => {
       type: 'image/jpeg'})
       
     axios({
-      method: 'post',
+      method: 'post', 
       url: 'http://10.0.2.2:5000/uploads',
       data: formData,
       headers: {
@@ -72,6 +72,5 @@ const App = () => {
     </SafeAreaView>
   );
 };
-
 
 export default App;
