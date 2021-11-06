@@ -53,7 +53,7 @@ const clickHandler = () => {
 };
 
 const clickAxios = () => {
-  axios.get('http://10.0.2.2:5000/api/users')
+  axios.get('http://10.0.2.2:5000/uploads')
   .then((res) => {
     console.log(JSON.stringify(res.data))
   }).catch((err) => {
